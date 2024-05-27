@@ -7,7 +7,7 @@ function Container() {
         <section>
             <Background />
             <div className="signin">
-             <InputBox auth="Sign Up"/>
+             <InputBox/>
             </div>
         </section>
     )

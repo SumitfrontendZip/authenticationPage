@@ -15,6 +15,7 @@ function Container() {
         setFields(prevData => ({ ...prevData, password: e.target.value }))
     }
 
+    
     const handleClick = () => {
         console.log(fields);
         setFields(prevData => ({ ...prevData, email: "", password: '' }))

@@ -11,6 +11,7 @@ body
   display: flex;
   align-items: center;
   background: #000;
+  
 }
 section 
 {
@@ -110,7 +111,7 @@ section .signin .content .form .inputBox input
   outline: none;
   padding: 25px 10px 7.5px;
   border-radius: 4px;
-  color: #fff;
+  color: #ffffff;
   font-weight: 500;
   font-size: 1em;
 }
@@ -161,6 +162,9 @@ section .signin .content .form .inputBox i
 input[type="submit"]:active
 {
   opacity: 0.6;
+}
+label{
+    color: white;
 }
 @media (max-width: 900px)
 {

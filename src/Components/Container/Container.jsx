@@ -8,18 +8,22 @@ function Container() {
         password: ''
     })
 
-    const handleEmail = (e) => {
+    const handleEmailChange = (e) => {
         setFields(prevData => ({ ...prevData, email: e.target.value }))
     }
-    const handlePassword = (e) => {
+    const handlePasswordChange = (e) => {
         setFields(prevData => ({ ...prevData, password: e.target.value }))
     }
 
-    
     const handleClick = () => {
-        console.log(fields);
-        setFields(prevData => ({ ...prevData, email: "", password: '' }))
+        const emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+   
+        if (emailRegEx.test(fields.email)) {
+            console.log(fields);
+            setFields(prevData => ({ ...prevData, email: "", password: '' }));
+        }
     }
+
 
     return (
         <section>
@@ -30,11 +34,11 @@ function Container() {
                     <div className="form">
                         <div className="inputBox">
                             <label htmlFor="email">Email</label>
-                            <input type="email" value={fields.email} onChange={handleEmail} />
+                            <input type="email" value={fields.email} onChange={handleEmailChange} />
                         </div>
                         <div className="inputBox">
                             <label htmlFor="email">Password</label>
-                            <input type="password" value={fields.password} onChange={handlePassword} />
+                            <input type="password" value={fields.password} onChange={handlePasswordChange} />
                         </div>
                         <div className="links"> <a href="#">Forgot Password</a> <a href="#">Signup</a>
                         </div>

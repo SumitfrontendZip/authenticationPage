@@ -1,15 +1,18 @@
 import { useState } from 'react'
 import './Input.css'
-import useInputValue from '../../Hooks/useInputValue'
 
 function Input({ name, type, flex }) {
 
-    const [data, setData] = useState({
-        value: '',
-        name: name
-    })
+   const [email , setEmail]= useState('')
+   const [password , setPassword]= useState('')
 
-   
+    const handleChange = (e) => {
+        setEmail(e.target.value)
+    }
+
+    const handleClick = () => {
+        console.log(data);
+    }
 
     return (
         <div style={flex}>
@@ -20,13 +23,15 @@ function Input({ name, type, flex }) {
             {type === 'checkbox' ? (
                 <input type="checkbox" required />
             ) : type === 'submit' ? (
-                <input type="submit" value={name} />
+                <input type="submit" value={name}
+                    onClick={handleClick}
+                />
             ) : (
                 <input
                     type={type}
                     required
-                    value={data.value}
-                    onChange={e => setData(prevData => ({ ...prevData, value: e.target.value }))}
+                    value={type === 'email' ? email : password}
+                    onChange={handleChange}
                 />
             )}
         </div>

@@ -13,6 +13,9 @@ body
   background: #000;
   
 }
+a{
+  color: white;
+}
 section 
 {
   position: absolute;

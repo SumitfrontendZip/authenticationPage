@@ -10,6 +10,12 @@ function InputBox() {
         firstName: '',
         lastName: '',
     })
+    const [error, setError] = useState({
+        email: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+    })
 
     const handleChange = (fieldName) => (e) => {
         setFields(prevData => ({ ...prevData, [fieldName]: e.target.value }));
@@ -24,6 +30,10 @@ function InputBox() {
     const handleClick = () => {
         const emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
+        const isEmptyInputCheck = Object.entries(fields).some(([key, value]) => {
+            setError(prevError => ({ ...prevError, [key]: value ? '' : `Please enter ${key.toLowerCase()}` }))
+        })
+
         if (emailRegEx.test(fields.email) && !auth && fields.email !== '' && fields.password !== '') {
             console.log(fields.email);
             console.log(fields.password);
@@ -37,6 +47,7 @@ function InputBox() {
             console.log(fields.lastName);
             console.log(fields.email);
             console.log(fields.password);
+            alert('Sign Up Successfully')
             setAuth(!auth)
         }
 
@@ -52,10 +63,12 @@ function InputBox() {
                             <div className="inputBox">
                                 <label htmlFor="email">First Name</label>
                                 <input type="email" value={fields.firstName} onChange={handleFirstNameChange} />
+                                <a>{error.firstName === '' ? '' : error.firstName}</a>
                             </div>
                             <div className="inputBox">
                                 <label htmlFor="email">Last Name</label>
                                 <input type="email" value={fields.lastName} onChange={handleLastNameChange} />
+                                <a>{error.lastName === '' ? '' : error.lastName}</a>
                             </div>
                         </>
                     )
@@ -63,10 +76,12 @@ function InputBox() {
                 <div className="inputBox">
                     <label htmlFor="email">Email</label>
                     <input type="email" value={fields.email} onChange={handleEmailChange} />
+                    <a>{error.email === '' ? '' : error.email}</a>
                 </div>
                 <div className="inputBox">
                     <label htmlFor="email">Password</label>
                     <input type="password" value={fields.password} onChange={handlePasswordChange} />
+                    <a>{error.password === '' ? '' : error.password}</a>
                 </div>
                 <div className="links"> <a href="#">Forgot Password</a> <a href="#" onClick={() => setAuth(!auth)}>{auth ? 'Log In' : 'Sign Up'}</a>
                 </div>
